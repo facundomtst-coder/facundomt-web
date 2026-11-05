@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Servicio técnico de PC y notebooks</title>
+<meta name="description" content="Reparación de PC y notebooks, soporte remoto, redes e impresoras. Pedí tu presupuesto por WhatsApp.">
+<link rel="icon" type="image/png" href="favicon.png?v=18">
+<link rel="apple-touch-icon" href="favicon.png?v=18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css?v=18">
+</head>
+<body>
+<a class="saltar" href="#servicios">Saltar al contenido</a>
+<div id="aviso-config" class="aviso-config" hidden>Vista previa: completá tus datos en <code>config.js</code> para activar tu WhatsApp.</div>
+
+<header class="cabecera">
+  <div class="contenedor cabecera-fila">
+    <a class="marca" href="#inicio">
+      <img src="logo.png?v=18" alt="Facundo MT Computación" width="600" height="148">
+    </a>
+    <button class="menu-boton" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+      <span></span><span></span>
+    </button>
+    <nav id="menu" class="menu" aria-label="Principal">
+      <div class="menu-grupo">
+        <a href="#servicios">Servicios <span class="flecha" aria-hidden="true">▾</span></a>
+        <div id="mega" class="mega"></div>
+      </div>
+      <a href="#cotizador">Cotizador</a>
+      <a href="#seguimiento">Seguir reparación</a>
+      <a href="#cobertura">Cobertura</a>
+      <a href="#contacto">Contacto</a>
+      <a class="menu-wa" data-wa="Hola, necesito ayuda con un equipo." target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="inicio" class="portada">
+    <div class="particulas" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="contenedor portada-grilla">
+      <div>
+        <p class="insignia entrada"><span class="punto"></span>Servicio técnico en <span data-ciudad></span></p>
+        <h1 class="entrada" style="--d:.1s" aria-label="Servicio técnico para tu PC, notebook, hogar, oficina o comercio">
+          <span aria-hidden="true">Servicio técnico para tu</span>
+          <span class="escritura" aria-hidden="true"><span id="escritura-texto">PC y notebook</span></span>
+        </h1>
+        <p class="portada-texto entrada" style="--d:.2s">Reparamos PC y notebooks y resolvemos problemas de software, redes e impresoras. Te explicamos la falla y el precio antes de tocar nada.</p>
+        <div class="acciones entrada" style="--d:.3s">
+          <a class="boton boton-wa" data-wa="Hola, necesito ayuda con un equipo." target="_blank" rel="noopener">Consultar por WhatsApp</a>
+          <a class="boton boton-linea" href="#cotizador">Armar mi consulta</a>
+        </div>
+      </div>
+      <div class="orbe entrada" style="--d:.4s" aria-hidden="true">
+        <div class="orbe-nucleo"></div>
+        <div class="orbe-anillo"></div>
+        <div class="orbe-iconos" id="orbe-iconos"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="seccion">
+    <div class="contenedor">
+      <div class="encabezado">
+        <p class="insignia insignia-clara">Servicios</p>
+        <h2>¿Qué <span class="texto-degrade">te está fallando?</span></h2>
+        <p>Elegí lo que necesitás y mirá todos los trabajos que hacemos.</p>
+      </div>
+      <div id="lista-servicios" class="servicios"></div>
+    </div>
+  </section>
+
+  <section class="seccion seccion-motivos">
+    <div class="contenedor">
+      <div class="encabezado">
+        <p class="insignia insignia-clara">Cómo trabajamos</p>
+        <h2>Sin sorpresas de <span class="texto-degrade">principio a fin</span></h2>
+        <p>Queremos que sepas qué tiene tu equipo y cuánto cuesta arreglarlo antes de empezar.</p>
+      </div>
+      <ul id="lista-motivos" class="motivos"></ul>
+    </div>
+  </section>
+
+  <section id="cotizador" class="seccion seccion-cotizador">
+    <div class="contenedor">
+      <div class="encabezado">
+        <p class="insignia">Cotizador en línea</p>
+        <h2>Armá tu consulta en <span class="texto-degrade">tres pasos</span></h2>
+        <p>Elegí lo que necesitás y nos llega por WhatsApp con todo el detalle. El precio final se confirma al ver el equipo.</p>
+      </div>
+      <div class="asistente" id="asistente">
+        <ol class="pasos" aria-hidden="true"><li>1</li><li>2</li><li>3</li></ol>
+        <p class="asistente-paso" id="asistente-titulo" tabindex="-1"></p>
+        <div id="asistente-cuerpo" class="asistente-opciones"></div>
+        <button id="asistente-atras" class="asistente-atras" type="button" hidden>← Atrás</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="bloque-numeros" class="seccion seccion-numeros" hidden>
+    <div class="contenedor numeros" id="lista-numeros"></div>
+  </section>
+
+  <section id="bloque-opiniones" class="seccion" hidden>
+    <div class="contenedor">
+      <div class="encabezado">
+        <p class="insignia insignia-clara">Opiniones</p>
+        <h2>Lo que cuentan nuestros <span class="texto-degrade">clientes</span></h2>
+        <p>Experiencias de personas que ya nos trajeron su equipo.</p>
+      </div>
+      <div class="carrusel-zona">
+        <div id="lista-opiniones" class="carrusel" tabindex="0" aria-label="Opiniones de clientes"></div>
+        <div class="carrusel-control">
+          <button type="button" id="opinion-anterior" aria-label="Opinión anterior">←</button>
+          <div id="opinion-puntos" class="carrusel-puntos" aria-hidden="true"></div>
+          <button type="button" id="opinion-siguiente" aria-label="Opinión siguiente">→</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="seguimiento" class="seccion seccion-seguimiento">
+    <div class="contenedor">
+      <div class="encabezado">
+        <p class="insignia insignia-clara">Seguir reparación</p>
+        <h2>¿Cómo va <span class="texto-degrade">tu equipo?</span></h2>
+        <p>Ingresá el número de orden y el código que figuran en tu nota de ingreso.</p>
+      </div>
+      <div class="seguimiento-caja">
+        <form id="form-seguimiento" class="seguimiento-form" novalidate>
+          <div>
+            <label for="s-folio">Número de orden</label>
+            <input id="s-folio" name="folio" autocomplete="off" inputmode="numeric" placeholder="Ej.: 2026-0000123" required>
+          </div>
+          <div>
+            <label for="s-codigo">Código</label>
+            <input id="s-codigo" name="codigo" autocomplete="off" autocapitalize="characters" spellcheck="false" maxlength="12" placeholder="Ej.: ABC234" required>
+          </div>
+          <button class="boton boton-wa" type="submit">Consultar</button>
+        </form>
+        <div id="resultado-seguimiento" class="seguimiento-resultado" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cobertura" class="seccion seccion-cobertura">
+    <div class="contenedor">
+      <div class="encabezado">
+        <p class="insignia insignia-clara">Zona de cobertura</p>
+        <h2>Servicio en <span class="texto-degrade" id="cobertura-titulo"></span></h2>
+        <p>Atención presencial en la zona y soporte remoto para cuando no hace falta mover el equipo.</p>
+      </div>
+      <div class="cobertura-grilla">
+        <div class="cobertura-mapa" id="cobertura-mapa"></div>
+        <div class="cobertura-info">
+          <h3>Presencial</h3>
+          <p id="cobertura-presencial"></p>
+          <ul id="cobertura-zonas" class="zonas"></ul>
+          <h3>Remoto</h3>
+          <p id="cobertura-remoto"></p>
+          <a class="boton boton-wa" data-wa="Hola, ¿llegan hasta mi zona?" target="_blank" rel="noopener">Consultar mi zona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="seccion seccion-contacto">
+    <div class="contenedor">
+      <div class="contacto-titulo">
+        <p class="insignia">Contacto</p>
+        <h2>Contanos qué le pasa a <span class="texto-degrade">tu equipo</span></h2>
+        <p>Completá el formulario y se abre WhatsApp con tu mensaje listo. Vos decidís cuándo mandarlo.</p>
+      </div>
+      <div class="contacto-grilla">
+        <form id="formulario" class="formulario">
+          <label for="f-nombre">Nombre completo</label>
+          <input id="f-nombre" name="nombre" autocomplete="name" placeholder="Ej.: Juan Pérez" required>
+          <label for="f-telefono">Teléfono o celular</label>
+          <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" placeholder="Ej.: 362 400-0000">
+          <label for="f-servicio">Servicio que necesitás</label>
+          <select id="f-servicio" name="servicio" required></select>
+          <label for="f-problema">Contanos el problema</label>
+          <textarea id="f-problema" name="problema" rows="4" required placeholder="Ej.: la notebook prende pero no aparece nada en la pantalla"></textarea>
+          <button class="boton boton-wa" type="submit">Enviar por WhatsApp</button>
+        </form>
+        <ul id="datos-contacto" class="contacto-tarjetas"></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <div class="contenedor pie-grilla">
+    <div>
+      <img class="pie-marca" src="logo-claro.png?v=18" alt="Facundo MT Computación" width="600" height="148" loading="lazy">
+      <p>Servicio técnico de PC, notebooks, redes e impresoras en <span data-ciudad></span>.</p>
+      <div id="pie-redes" class="pie-redes"></div>
+    </div>
+    <nav aria-label="Secciones">
+      <h3>Navegación</h3>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#cotizador">Cotizador</a></li>
+        <li><a href="#seguimiento">Seguir reparación</a></li>
+        <li><a href="#cobertura">Cobertura</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Servicios">
+      <h3>Servicios</h3>
+      <ul id="pie-servicios"></ul>
+    </nav>
+    <div>
+      <h3>Contacto</h3>
+      <ul id="pie-contacto"></ul>
+    </div>
+  </div>
+  <div class="contenedor pie-copy"><small>© <span id="anio"></span> <span data-nombre></span></small></div>
+</footer>
+
+<a class="wa-flotante" data-wa="Hola, necesito ayuda con un equipo." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.7-3-1.3-5-4.4-5.200-4.600-.1-.2-1.200-1.600-1.200-3.100s.8-2.200 1.100-2.500c.3-.3.600-.4.800-.4h.6c.2 0 .4 0 .6.500l.8 2c.1.200.1.400 0 .6l-.3.5-.4.5c-.1.100-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.400 2.400 1.500.3.100.5.100.7-.1l.9-1.100c.2-.3.400-.2.700-.1l1.900.9c.3.100.5.200.6.300.100.200.100.800-.1 1.500Z"/></svg>
+</a>
+
+<script src="config.js?v=18"></script>
+<script src="app.js?v=18"></script>
+</body>
+</html>
