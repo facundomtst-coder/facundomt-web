@@ -51,7 +51,14 @@ window.SITIO = {
 
   // Se muestran solo si cargás opiniones reales de tus clientes.
   // Ejemplo: { texto: "Me recuperaron todas las fotos.", autor: "María G.", detalle: "Clienta", estrellas: 5 }
-  opiniones: [],
+  opiniones: [
+    { texto: "Excelente el servicio. Tanto el arreglo de impresoras Epson, en mi caso, como el mantenimiento de las Netbook y computadoras de escritorio. Super recomendable, con garantía.", autor: "Erica Sandoval", detalle: "Reseña en Google", estrellas: 5 },
+    { texto: "Buen servicio, cumplidor y muy buena atención técnica. Si lo tengo que describir: Honesto, trabajador y amable.", autor: "Leandro Rodríguez", detalle: "Reseña en Google", estrellas: 5 },
+    { texto: "Atencion siempre muy cordial. Solucion para los inconvenientes de los equipos en buen tiempo, y siempre con garantia, se recomienda obviamente que si.", autor: "Fernando Leguizamon", detalle: "Reseña en Google", estrellas: 5 },
+    { texto: "Excelente la atencion y la responsabilidad para dar solucion urgente.", autor: "Christian Harvey", detalle: "Reseña en Google", estrellas: 5 },
+    { texto: "Rápida atención, servicio profesional, precios módicos", autor: "Daniel Rodriguez", detalle: "Reseña en Google", estrellas: 5 },
+    { texto: "Amable atención, buscan la forma de solucionar cualquier problema que se le traiga.", autor: "Daniel Alberto Rodriguez", detalle: "Reseña en Google", estrellas: 5 }
+  ],
 
   // "precio" es opcional. Si lo dejás vacío, el cotizador ofrece
   // pedir el precio por WhatsApp. Ejemplo: precio: "$20.000 a $35.000"

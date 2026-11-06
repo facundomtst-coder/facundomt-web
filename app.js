@@ -306,6 +306,10 @@
   // Opiniones (solo si hay datos reales)
   if (S.opiniones.length) {
     $("bloque-opiniones").hidden = false;
+    if (S.googlePerfil) {
+      $("opiniones-google").hidden = false;
+      $("opiniones-google").firstChild.href = S.googlePerfil;
+    }
     var carrusel = $("lista-opiniones");
     S.opiniones.forEach(function (o) {
       var f = crear("figure", "opinion");
