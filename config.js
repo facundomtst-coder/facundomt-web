@@ -12,8 +12,20 @@ window.SITIO = {
   email: "facundomt.st@gmail.com",
   horario: "Lunes a viernes de 09:00 a 12:30 y de 17:00 a 20:30",
   direccion: "Diagonal Eva Perón 251, Barranqueras, Chaco",
-  facebook: "",
-  instagram: "",
+  facebook: "https://www.facebook.com/facundo.facundomt",  // enlace completo, por ejemplo "https://www.facebook.com/tu.pagina"
+  instagram: "",       // enlace completo, por ejemplo "https://www.instagram.com/tu.usuario"
+  googlePerfil: "",    // enlace a tu perfil de Google Maps (en Maps: Compartir > Copiar vínculo)
+
+  // Horario para el aviso "Abierto ahora". Días: 1 lunes ... 6 sábado, 0 domingo.
+  horarios: [
+    { dias: [1, 2, 3, 4, 5], desde: "09:00", hasta: "12:30" },
+    { dias: [1, 2, 3, 4, 5], desde: "17:00", hasta: "20:30" }
+  ],
+  // Días que no abrís aunque sean hábiles (feriados, vacaciones), en formato "AAAA-MM-DD".
+  diasCerrado: [],
+
+  // Estadísticas de Cloudflare Web Analytics: pegá acá el token que te da Cloudflare.
+  cloudflareToken: "",
 
   // Dirección del puente de seguimiento (termina en /exec). Ver D:\ReparaTech\seguimiento\INSTRUCCIONES.md
   seguimientoUrl: "https://script.google.com/macros/s/AKfycbypOuSRglwsY4zZB-_UbFHSWqwTMpdwi1Syx1xfxmSnYklmQL5IWlndYkE7E5Qs4Bmh/exec",
@@ -115,6 +127,19 @@ window.SITIO = {
         { nombre: "Instalación y capacitación", precio: "" }
       ]
     }
+  ],
+
+  // Preguntas frecuentes. Las que tienen la respuesta vacía no se muestran.
+  preguntas: [
+    { pregunta: "¿Cuánto cuesta revisar mi equipo?", respuesta: "" },
+    { pregunta: "¿Me dicen el precio antes de reparar?", respuesta: "Sí. Primero revisamos el equipo y te pasamos el presupuesto. No hacemos ningún trabajo hasta que lo apruebes." },
+    { pregunta: "¿Cuánto tarda una reparación?", respuesta: "" },
+    { pregunta: "¿Van a domicilio?", respuesta: "Sí. Atendemos en el taller y a domicilio en Barranqueras y alrededores." },
+    { pregunta: "¿Se puede resolver sin llevar el equipo?", respuesta: "Muchos problemas de software se resuelven con soporte remoto: nos conectamos a tu equipo por internet, desde cualquier lugar del país." },
+    { pregunta: "¿El trabajo tiene garantía?", respuesta: "Sí. Si la misma falla vuelve, revisamos el equipo de nuevo." },
+    { pregunta: "¿Cómo sé cómo va mi reparación?", respuesta: "Entrá en «Seguir reparación» con el número de orden y el código de tu nota de ingreso. Además te avisamos por WhatsApp cuando esté listo." },
+    { pregunta: "¿Qué formas de pago aceptan?", respuesta: "" },
+    { pregunta: "¿Instalan sistemas de facturación para comercios?", respuesta: "Sí. Instalamos sistemas de gestión con facturación electrónica de ARCA, control de stock y ventas, y te enseñamos a usarlos." }
   ],
 
   // Revisá que puedas cumplir cada una de estas promesas.

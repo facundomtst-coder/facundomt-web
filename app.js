@@ -43,6 +43,17 @@
     fetch(S.seguimientoUrl + "?visita=1", { mode: "no-cors", keepalive: true }).catch(function () {});
   })();
 
+  // Estadísticas de Cloudflare (país, origen y equipo de las visitas). Tampoco cuenta las pruebas locales.
+  (function () {
+    var local = location.protocol === "file:" || /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(location.hostname);
+    if (!S.cloudflareToken || local) return;
+    var cf = document.createElement("script");
+    cf.defer = true;
+    cf.src = "https://static.cloudflareinsights.com/beacon.min.js";
+    cf.setAttribute("data-cf-beacon", JSON.stringify({ token: S.cloudflareToken }));
+    document.head.appendChild(cf);
+  })();
+
   // Menú móvil
   var botonMenu = document.querySelector(".menu-boton");
   var menu = $("menu");
@@ -370,6 +381,7 @@
     correo: '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/>',
     reloj: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
     zona: '<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+    google: '<path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7.1L12 17.3 5.8 21l1.6-7.1L2 9.2l7.1-.6z"/>',
     remoto: '<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4M9 10.500h6M12.500 8l2.500 2.500-2.500 2.500"/>'
   };
   var mapa = S.direccion ? "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(S.direccion) : "";
@@ -378,6 +390,7 @@
     ["pin", "Dirección", S.direccion, mapa],
     ["correo", "Correo electrónico", S.email, "mailto:" + S.email],
     ["reloj", "Horario de atención", S.horario, ""],
+    ["google", "Google", S.googlePerfil ? "Ver el perfil y dejar una opinión" : "", S.googlePerfil],
     ["zona", "Zona de cobertura", S.cobertura.zonaCorta, ""],
     ["remoto", "Soporte remoto", S.cobertura.remotoCorto, ""]
   ];
@@ -403,7 +416,12 @@
     texto.appendChild(enlaceODato(d[2], d[3]));
     li.appendChild(texto);
     $("datos-contacto").appendChild(li);
-    if (d[0] === "remoto" || d[0] === "zona") return;
+    if (d[0] === "reloj") {
+      var estadoContacto = crear("small", "contacto-estado");
+      estadoContacto.id = "estado-contacto";
+      texto.appendChild(estadoContacto);
+    }
+    if (d[0] === "remoto" || d[0] === "zona" || d[0] === "google") return;
     var enPie = crear("li");
     enPie.appendChild(enlaceODato(d[2], d[3]));
     $("pie-contacto").appendChild(enPie);
@@ -417,7 +435,7 @@
   });
 
   // Redes
-  [["Facebook", S.facebook], ["Instagram", S.instagram]].forEach(function (r) {
+  [["Facebook", S.facebook], ["Instagram", S.instagram], ["Google", S.googlePerfil]].forEach(function (r) {
     if (!r[1]) return;
     var a = crear("a", "", r[0]);
     a.href = r[1];
@@ -425,6 +443,86 @@
     a.rel = "noopener";
     $("pie-redes").appendChild(a);
   });
+
+  // Abierto o cerrado según el horario, en hora de Argentina
+  var NOMBRES_DIA = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+  function minutos(hhmm) { var p = hhmm.split(":"); return Number(p[0]) * 60 + Number(p[1]); }
+  function ahoraArgentina() {
+    var partes = {};
+    new Intl.DateTimeFormat("en-CA", {
+      timeZone: "America/Argentina/Buenos_Aires", hourCycle: "h23",
+      year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", weekday: "short"
+    }).formatToParts(new Date()).forEach(function (p) { partes[p.type] = p.value; });
+    var dias = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    return {
+      fecha: partes.year + "-" + partes.month + "-" + partes.day,
+      dia: dias[partes.weekday],
+      min: Number(partes.hour) * 60 + Number(partes.minute)
+    };
+  }
+  function sumarDias(fecha, n) {
+    var d = new Date(fecha + "T12:00:00Z");
+    d.setUTCDate(d.getUTCDate() + n);
+    return d.toISOString().slice(0, 10);
+  }
+  function tramosDelDia(dia, fecha) {
+    if ((S.diasCerrado || []).indexOf(fecha) >= 0) return [];
+    return (S.horarios || []).filter(function (h) { return h.dias.indexOf(dia) >= 0; })
+      .map(function (h) { return [minutos(h.desde), minutos(h.hasta), h.desde, h.hasta]; })
+      .sort(function (a, b) { return a[0] - b[0]; });
+  }
+  function estadoLocal() {
+    var a = ahoraArgentina();
+    var hoy = tramosDelDia(a.dia, a.fecha);
+    for (var i = 0; i < hoy.length; i++) {
+      if (a.min >= hoy[i][0] && a.min < hoy[i][1]) return { abierto: true, texto: "Abierto ahora · hasta las " + hoy[i][3] };
+    }
+    for (var j = 0; j < hoy.length; j++) {
+      if (a.min < hoy[j][0]) return { abierto: false, texto: "Cerrado · abrimos hoy a las " + hoy[j][2] };
+    }
+    for (var n = 1; n <= 14; n++) {
+      var dia = (a.dia + n) % 7;
+      var tramos = tramosDelDia(dia, sumarDias(a.fecha, n));
+      if (tramos.length) {
+        var cuando = n === 1 ? "mañana" : "el " + NOMBRES_DIA[dia];
+        return { abierto: false, texto: "Cerrado · abrimos " + cuando + " a las " + tramos[0][2] };
+      }
+    }
+    return null;
+  }
+  function pintarEstado() {
+    var e = estadoLocal();
+    var marca = $("estado-local");
+    var enContacto = $("estado-contacto");
+    if (!e) { marca.hidden = true; if (enContacto) enContacto.hidden = true; return; }
+    marca.hidden = false;
+    marca.classList.toggle("abierto", e.abierto);
+    $("estado-texto").textContent = e.texto;
+    if (enContacto) {
+      enContacto.textContent = e.texto;
+      enContacto.classList.toggle("abierto", e.abierto);
+    }
+  }
+  if (S.horarios && S.horarios.length && window.Intl) {
+    pintarEstado();
+    setInterval(pintarEstado, 60000);
+  }
+
+  // Preguntas frecuentes
+  var conRespuesta = (S.preguntas || []).filter(function (p) { return p.respuesta; });
+  if (conRespuesta.length) {
+    $("preguntas").hidden = false;
+    conRespuesta.forEach(function (p, i) {
+      var det = crear("details");
+      if (i === 0) det.open = true;
+      var sum = crear("summary");
+      sum.appendChild(crear("span", "", p.pregunta));
+      sum.appendChild(crear("span", "pregunta-signo"));
+      det.appendChild(sum);
+      det.appendChild(crear("p", "", p.respuesta));
+      $("lista-preguntas").appendChild(det);
+    });
+  }
 
   // Formulario: arma el mensaje y abre WhatsApp
   var selector = $("f-servicio");
@@ -570,7 +668,7 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll(
-    ".seccion .insignia, .seccion h2, .encabezado > p:last-child, .contacto-titulo > p:last-child, .servicio, .motivos li, .asistente, .seguimiento-caja, .cobertura-mapa, .cobertura-info, .formulario, .contacto-tarjeta, .numeros > div, .carrusel-zona"
+    ".seccion .insignia, .seccion h2, .encabezado > p:last-child, .contacto-titulo > p:last-child, .servicio, .motivos li, .asistente, .seguimiento-caja, .cobertura-mapa, .cobertura-info, .formulario, .contacto-tarjeta, .numeros > div, .carrusel-zona, .preguntas details"
   ).forEach(function (el) {
     var hermanos = Array.prototype.indexOf.call(el.parentNode.children, el);
     el.classList.add("revelar");
