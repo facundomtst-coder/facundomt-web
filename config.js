@@ -69,11 +69,20 @@ window.SITIO = {
     },
     {
       id: "impresoras", titulo: "Impresoras",
-      resumen: "Atascos, manchas o una impresora que la PC no reconoce.",
+      resumen: "Inkjet, láser y térmicas (comanderas): reparación, mantenimiento, recargas y configuración.",
       items: [
-        { nombre: "Revisión y limpieza", precio: "" },
-        { nombre: "Instalación en red o por WiFi", precio: "" },
-        { nombre: "Sistema continuo y cabezales", precio: "" }
+        { nombre: "Reparación de impresoras inkjet y láser", precio: "" },
+        { nombre: "Reparación de impresoras térmicas (comanderas)", precio: "" },
+        { nombre: "Mantenimiento preventivo y correctivo", precio: "" },
+        { nombre: "Limpieza de cabezales y sistemas de impresión", precio: "" },
+        { nombre: "Recarga de cartuchos y tóners", precio: "" },
+        { nombre: "Solución de problemas de impresión", precio: "" },
+        { nombre: "Reparación de mecanismos de alimentación de papel", precio: "" },
+        { nombre: "Cambio de rodillos, fusores y componentes", precio: "" },
+        { nombre: "Instalación y configuración de impresoras", precio: "" },
+        { nombre: "Configuración de comanderas para sistemas POS", precio: "" },
+        { nombre: "Configuración de conexiones USB, Ethernet, Wi-Fi y Bluetooth", precio: "" },
+        { nombre: "Diagnóstico de fallas electrónicas", precio: "" }
       ]
     },
     {
