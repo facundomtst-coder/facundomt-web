@@ -14,7 +14,7 @@ window.SITIO = {
   direccion: "Diagonal Eva Perón 251, Barranqueras, Chaco",
   facebook: "https://www.facebook.com/facundo.facundomt",  // enlace completo, por ejemplo "https://www.facebook.com/tu.pagina"
   instagram: "https://www.instagram.com/facundomt.st/",  // enlace completo, por ejemplo "https://www.instagram.com/tu.usuario"
-  googlePerfil: "",    // enlace a tu perfil de Google Maps (en Maps: Compartir > Copiar vínculo)
+  googlePerfil: "https://maps.google.com/?cid=14906076597080427444",    // enlace a tu perfil de Google Maps (en Maps: Compartir > Copiar vínculo)
 
   // Horario para el aviso "Abierto ahora". Días: 1 lunes ... 6 sábado, 0 domingo.
   horarios: [
