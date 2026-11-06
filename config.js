@@ -25,7 +25,7 @@ window.SITIO = {
   diasCerrado: [],
 
   // Estadísticas de Cloudflare Web Analytics: pegá acá el token que te da Cloudflare.
-  cloudflareToken: "",
+  cloudflareToken: "c3c14911f4b14156b93fa971e0f0cea5",
 
   // Dirección del puente de seguimiento (termina en /exec). Ver D:\ReparaTech\seguimiento\INSTRUCCIONES.md
   seguimientoUrl: "https://script.google.com/macros/s/AKfycbypOuSRglwsY4zZB-_UbFHSWqwTMpdwi1Syx1xfxmSnYklmQL5IWlndYkE7E5Qs4Bmh/exec",
