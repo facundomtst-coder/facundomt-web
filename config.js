@@ -131,14 +131,14 @@ window.SITIO = {
 
   // Preguntas frecuentes. Las que tienen la respuesta vacía no se muestran.
   preguntas: [
-    { pregunta: "¿Cuánto cuesta revisar mi equipo?", respuesta: "" },
+    { pregunta: "¿Cuánto cuesta revisar mi equipo?", respuesta: "La revisión es sin costo. Te decimos qué tiene el equipo y cuánto sale arreglarlo, y vos decidís si lo hacemos." },
     { pregunta: "¿Me dicen el precio antes de reparar?", respuesta: "Sí. Primero revisamos el equipo y te pasamos el presupuesto. No hacemos ningún trabajo hasta que lo apruebes." },
-    { pregunta: "¿Cuánto tarda una reparación?", respuesta: "" },
+    { pregunta: "¿Cuánto tarda una reparación?", respuesta: "Por lo general, entre 24 y 48 horas." },
     { pregunta: "¿Van a domicilio?", respuesta: "Sí. Atendemos en el taller y a domicilio en Barranqueras y alrededores." },
     { pregunta: "¿Se puede resolver sin llevar el equipo?", respuesta: "Muchos problemas de software se resuelven con soporte remoto: nos conectamos a tu equipo por internet, desde cualquier lugar del país." },
     { pregunta: "¿El trabajo tiene garantía?", respuesta: "Sí. Si la misma falla vuelve, revisamos el equipo de nuevo." },
     { pregunta: "¿Cómo sé cómo va mi reparación?", respuesta: "Entrá en «Seguir reparación» con el número de orden y el código de tu nota de ingreso. Además te avisamos por WhatsApp cuando esté listo." },
-    { pregunta: "¿Qué formas de pago aceptan?", respuesta: "" },
+    { pregunta: "¿Qué formas de pago aceptan?", respuesta: "Efectivo, transferencia y Mercado Pago, también con QR." },
     { pregunta: "¿Instalan sistemas de facturación para comercios?", respuesta: "Sí. Instalamos sistemas de gestión con facturación electrónica de ARCA, control de stock y ventas, y te enseñamos a usarlos." }
   ],
 
