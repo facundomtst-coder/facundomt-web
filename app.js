@@ -173,6 +173,11 @@
     ver.appendChild(flechaVer);
     ver.addEventListener("click", function () { fijarServicio(art, !art.classList.contains("abierto")); });
     acciones.appendChild(ver);
+    if (s.id === "sistemas" && S.sistemaGestion) {
+      var conocer = crear("a", "servicio-enlace", "Conocé el sistema →");
+      conocer.href = "#sistema-gestion";
+      acciones.appendChild(conocer);
+    }
     acciones.appendChild(botonWa("Hola, quiero consultar por: " + s.titulo + ".", "Consultar por WhatsApp →", "servicio-enlace"));
     art.appendChild(acciones);
     $("lista-servicios").appendChild(art);
@@ -448,6 +453,57 @@
     $("pie-redes").appendChild(a);
   });
 
+  // Sistema de gestión para comercios
+  (function () {
+    var G = S.sistemaGestion;
+    if (!G) return;
+    $("sistema-gestion").hidden = false;
+    $("gestion-titulo").textContent = G.titulo;
+    $("gestion-texto").textContent = G.texto;
+    (G.puntos || []).forEach(function (p) { $("gestion-puntos").appendChild(crear("li", "", p)); });
+    var ICONOS_GESTION = {
+      caja: '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M7 20h10M12 16v4M7 8h4M7 11h7"/>',
+      stock: '<path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/>',
+      factura: '<path d="M5 3v18l2.5-1.5L10 21l2-1.5 2 1.5 2.5-1.5L19 21V3l-2.5 1.5L14 3l-2 1.5L10 3 7.5 4.5z"/><path d="M8.5 9h7M8.5 13h7"/>',
+      reportes: '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+      presupuesto: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>',
+      clientes: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/>'
+    };
+    (G.funciones || []).forEach(function (f) {
+      var li = crear("li", "gestion-funcion");
+      li.appendChild(icono(ICONOS_GESTION[f.icono] || ICONOS_GESTION.caja, "gestion-icono"));
+      li.appendChild(crear("h3", "", f.titulo));
+      li.appendChild(crear("p", "", f.texto));
+      $("gestion-funciones").appendChild(li);
+    });
+    (G.rubros || []).forEach(function (r) { $("gestion-rubros").appendChild(crear("li", "", r)); });
+    (G.pasos || []).forEach(function (p, i) {
+      var li = crear("li", "gestion-paso");
+      li.appendChild(crear("span", "gestion-numero", String(i + 1)));
+      li.appendChild(crear("h4", "", p.titulo));
+      li.appendChild(crear("p", "", p.texto));
+      $("gestion-lista-pasos").appendChild(li);
+    });
+    if (G.equipos) $("gestion-equipos").textContent = G.equipos;
+    else $("gestion-equipos-caja").hidden = true;
+
+    // Capturas del sistema: cambian solas y con los botones
+    var fotos = document.querySelectorAll("#capturas img");
+    var botonesFoto = document.querySelectorAll(".capturas-botones button");
+    var fotoActual = 0;
+    var mostrarFoto = function (n) {
+      fotoActual = n % fotos.length;
+      Array.prototype.forEach.call(fotos, function (f, i) { f.classList.toggle("activa", i === fotoActual); });
+      $("capturas-marco").href = fotos[fotoActual].getAttribute("src");
+      Array.prototype.forEach.call(botonesFoto, function (b, i) { b.setAttribute("aria-pressed", i === fotoActual ? "true" : "false"); });
+    };
+    var pausaFotos = false;
+    Array.prototype.forEach.call(botonesFoto, function (b) {
+      b.addEventListener("click", function () { pausaFotos = true; mostrarFoto(Number(b.dataset.captura)); });
+    });
+    if (!reducido) setInterval(function () { if (!pausaFotos && !document.hidden) mostrarFoto(fotoActual + 1); }, 5000);
+  })();
+
   // Abierto o cerrado según el horario, en hora de Argentina
   var NOMBRES_DIA = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
   function minutos(hhmm) { var p = hhmm.split(":"); return Number(p[0]) * 60 + Number(p[1]); }
@@ -672,7 +728,7 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll(
-    ".seccion .insignia, .seccion h2, .encabezado > p:last-child, .contacto-titulo > p:last-child, .servicio, .motivos li, .asistente, .seguimiento-caja, .cobertura-mapa, .cobertura-info, .formulario, .contacto-tarjeta, .numeros > div, .carrusel-zona, .preguntas details"
+    ".seccion .insignia, .seccion h2, .encabezado > p:last-child, .contacto-titulo > p:last-child, .servicio, .motivos li, .asistente, .seguimiento-caja, .cobertura-mapa, .cobertura-info, .formulario, .contacto-tarjeta, .numeros > div, .carrusel-zona, .preguntas details, .gestion-texto, .gestion-ilustracion, .gestion-funcion, .gestion-paso, .gestion-rubros"
   ).forEach(function (el) {
     var hermanos = Array.prototype.indexOf.call(el.parentNode.children, el);
     el.classList.add("revelar");

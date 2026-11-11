@@ -49,12 +49,12 @@
   ]
 }
 </script>
-<link rel="icon" type="image/png" href="favicon.png?v=25">
-<link rel="apple-touch-icon" href="favicon.png?v=25">
+<link rel="icon" type="image/png" href="favicon.png?v=28">
+<link rel="apple-touch-icon" href="favicon.png?v=28">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="estilos.css?v=25">
+<link rel="stylesheet" href="estilos.css?v=28">
 </head>
 <body>
 <a class="saltar" href="#servicios">Saltar al contenido</a>
@@ -63,7 +63,7 @@
 <header class="cabecera">
   <div class="contenedor cabecera-fila">
     <a class="marca" href="#inicio">
-      <img src="logo.png?v=25" alt="Facundo MT Computación" width="600" height="148">
+      <img src="logo.png?v=28" alt="Facundo MT Computación" width="600" height="148">
     </a>
     <button class="menu-boton" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
       <span></span><span></span>
@@ -113,6 +113,60 @@
       <div id="lista-servicios" class="servicios"></div>
     </div>
   </section>
+
+  <section id="sistema-gestion" class="seccion seccion-gestion" hidden>
+    <div class="contenedor">
+      <div class="gestion-portada">
+        <div class="gestion-texto">
+          <p class="insignia">Sistema Facturación y Ventas</p>
+          <h2 id="gestion-titulo"></h2>
+          <p class="gestion-bajada" id="gestion-texto"></p>
+          <ul class="gestion-puntos" id="gestion-puntos"></ul>
+          <div class="gestion-acciones">
+            <a class="boton boton-wa" data-wa="Hola, quiero ver una demostración del sistema de gestión y facturación para mi comercio." target="_blank" rel="noopener">Pedí una demostración</a>
+            <a class="boton boton-linea" href="#gestion-pasos">Cómo lo ponemos en marcha</a>
+          </div>
+        </div>
+        <div class="gestion-ilustracion">
+          <div class="capturas" id="capturas">
+            <div class="capturas-barra" aria-hidden="true"><i></i><i></i><i></i><span>Facturación y Ventas</span></div>
+            <a class="capturas-marco" id="capturas-marco" href="sistema-ventas.webp?v=1" target="_blank" rel="noopener" title="Ver en tamaño completo">
+              <img class="activa" src="sistema-ventas.webp?v=1" width="1100" height="609" alt="Pantalla de ventas del sistema Facturación y Ventas" loading="lazy">
+              <img src="sistema-inicio.webp?v=1" width="1100" height="521" alt="Pantalla de inicio del sistema Facturación y Ventas" loading="lazy">
+            </a>
+          </div>
+          <div class="capturas-botones" role="group" aria-label="Elegir pantalla">
+            <button type="button" aria-pressed="true" data-captura="0">Pantalla de venta</button>
+            <button type="button" aria-pressed="false" data-captura="1">Inicio</button>
+          </div>
+          <div class="ticket" aria-hidden="true">
+            <b>FACTURA B</b>
+            <span>Comprobante electrónico</span>
+            <div class="ticket-qr"></div>
+            <span class="ticket-cae">CAE autorizado por ARCA ✓</span>
+          </div>
+        </div>
+      </div>
+
+      <ul class="gestion-funciones" id="gestion-funciones"></ul>
+
+      <div class="gestion-rubros">
+        <p>Pensado para</p>
+        <ul id="gestion-rubros"></ul>
+      </div>
+
+      <div class="gestion-pasos-zona" id="gestion-pasos">
+        <h3>Así lo ponemos en marcha</h3>
+        <ol class="gestion-pasos" id="gestion-lista-pasos"></ol>
+      </div>
+
+      <div class="gestion-equipos" id="gestion-equipos-caja">
+        <p id="gestion-equipos"></p>
+        <a class="boton boton-wa" data-wa="Hola, necesito armar el puesto de caja para mi comercio (PC, impresora de tickets y lector)." target="_blank" rel="noopener">Consultar por el equipo</a>
+      </div>
+    </div>
+  </section>
+
 
   <section class="seccion seccion-motivos">
     <div class="contenedor">
@@ -248,7 +302,7 @@
 <footer class="pie">
   <div class="contenedor pie-grilla">
     <div>
-      <img class="pie-marca" src="logo-claro.png?v=25" alt="Facundo MT Computación" width="600" height="148" loading="lazy">
+      <img class="pie-marca" src="logo-claro.png?v=28" alt="Facundo MT Computación" width="600" height="148" loading="lazy">
       <p>Servicio técnico de PC, notebooks, redes e impresoras en <span data-ciudad></span>.</p>
       <div id="pie-redes" class="pie-redes"></div>
     </div>
@@ -280,7 +334,7 @@
   <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1-.4-.1-1-.3-1.8-.7-3-1.3-5-4.4-5.200-4.600-.1-.2-1.200-1.600-1.200-3.100s.8-2.200 1.100-2.500c.3-.3.600-.4.800-.4h.6c.2 0 .4 0 .6.500l.8 2c.1.200.1.400 0 .6l-.3.5-.4.5c-.1.100-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.400 2.400 1.500.3.100.5.100.7-.1l.9-1.100c.2-.3.400-.2.700-.1l1.900.9c.3.100.5.200.6.300.100.200.100.800-.1 1.500Z"/></svg>
 </a>
 
-<script src="config.js?v=25"></script>
-<script src="app.js?v=25"></script>
+<script src="config.js?v=28"></script>
+<script src="app.js?v=28"></script>
 </body>
 </html>

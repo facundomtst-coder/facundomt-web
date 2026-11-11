@@ -126,7 +126,7 @@ window.SITIO = {
     },
     {
       id: "sistemas", titulo: "Sistemas de gestión y facturación de comercios",
-      resumen: "Ordená las ventas, el stock y la facturación electrónica con ARCA en un solo sistema.",
+      resumen: "Vendé, controlá tu stock y facturá con ARCA desde una sola pantalla. Lo instalamos y te enseñamos a usarlo.",
       items: [
         { nombre: "Sistema de gestión para tu comercio", precio: "" },
         { nombre: "Facturación electrónica con ARCA (ex AFIP)", precio: "" },
@@ -135,6 +135,34 @@ window.SITIO = {
       ]
     }
   ],
+
+  // Sección "Sistema de gestión para tu comercio". Revisá que cada punto sea cierto para el sistema que ofrecés.
+  sistemaGestion: {
+    titulo: "Tu comercio ordenado, de la caja a la factura",
+    texto: "Dejá el cuaderno y la calculadora. Con un sistema de gestión cobrás más rápido, sabés qué te queda en el depósito y emitís la factura electrónica de ARCA en el momento, desde la misma PC.",
+    puntos: [
+      "Facturación electrónica con ARCA (ex AFIP)",
+      "Control de stock al día con cada venta",
+      "Instalación, configuración y capacitación incluidas",
+      "Soporte de un técnico cerca tuyo, en Barranqueras"
+    ],
+    funciones: [
+      { icono: "caja", titulo: "Ventas y caja", texto: "Buscá el artículo por código, código de barras o nombre, cobrá y controlá la caja de cada puesto." },
+      { icono: "factura", titulo: "Factura electrónica", texto: "Emití tus comprobantes con CAE de ARCA desde la misma venta, sin entrar a la web de ARCA." },
+      { icono: "stock", titulo: "Artículos, compras y proveedores", texto: "Cargá tus artículos, registrá las compras y tené a mano a tus proveedores." },
+      { icono: "presupuesto", titulo: "Presupuestos y listas de precios", texto: "Armá presupuestos y manejá distintas listas de precios, por ejemplo efectivo y débito." },
+      { icono: "clientes", titulo: "Clientes, vendedores y cheques", texto: "Llevá tus clientes, asigná cada venta a un vendedor y controlá los cheques." },
+      { icono: "reportes", titulo: "Reportes", texto: "Consultá tus ventas y la información del negocio cuando la necesites." }
+    ],
+    rubros: ["Kioscos", "Almacenes", "Autoservicios", "Ferreterías", "Librerías", "Indumentaria", "Pet shops", "Verdulerías", "Distribuidoras", "Y más"],
+    pasos: [
+      { titulo: "Contanos tu negocio", texto: "Qué vendés, cuántas cajas tenés y cómo facturás hoy." },
+      { titulo: "Te lo mostramos", texto: "Ves el sistema funcionando antes de decidir." },
+      { titulo: "Lo instalamos", texto: "Lo dejamos andando en tu PC, con tus datos y la conexión a ARCA." },
+      { titulo: "Te acompañamos", texto: "Te enseñamos a usarlo y te ayudamos cuando lo necesites." }
+    ],
+    equipos: "¿No tenés computadora para la caja? También armamos el puesto completo: PC, impresora de tickets y lector de códigos."
+  },
 
   // Preguntas frecuentes. Las que tienen la respuesta vacía no se muestran.
   preguntas: [
