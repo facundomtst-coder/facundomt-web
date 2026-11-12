@@ -173,6 +173,11 @@
     ver.appendChild(flechaVer);
     ver.addEventListener("click", function () { fijarServicio(art, !art.classList.contains("abierto")); });
     acciones.appendChild(ver);
+    if (s.id === "empresas" && S.abonos) {
+      var verAbonos = crear("a", "servicio-enlace", "Ver abonos mensuales →");
+      verAbonos.href = "#abonos";
+      acciones.appendChild(verAbonos);
+    }
     if (s.id === "sistemas" && S.sistemaGestion) {
       var conocer = crear("a", "servicio-enlace", "Conocé el sistema →");
       conocer.href = "#sistema-gestion";
@@ -453,6 +458,44 @@
     $("pie-redes").appendChild(a);
   });
 
+  // Abonos de mantenimiento
+  (function () {
+    var A = S.abonos;
+    if (!A || !A.planes || !A.planes.length) return;
+    $("abonos").hidden = false;
+    A.planes.forEach(function (p) {
+      var art = crear("article", "plan" + (p.destacado ? " plan-destacado" : ""));
+      if (p.etiqueta) art.appendChild(crear("span", "plan-etiqueta", p.etiqueta));
+      art.appendChild(crear("h3", "", p.nombre));
+      var precio = crear("p", "plan-precio");
+      if (p.precio) {
+        precio.appendChild(crear("strong", "", p.precio));
+        precio.appendChild(crear("span", "", " / mes"));
+      } else {
+        precio.appendChild(crear("strong", "plan-consultar", "Consultá el precio"));
+      }
+      art.appendChild(precio);
+      var ul = crear("ul");
+      p.items.forEach(function (it) { ul.appendChild(crear("li", "", it)); });
+      art.appendChild(ul);
+      art.appendChild(botonWa("Hola, quiero información sobre el " + p.nombre + " de mantenimiento para mi negocio.", "Quiero este plan", "boton " + (p.destacado ? "boton-wa" : "boton-linea-oscura")));
+      $("lista-planes").appendChild(art);
+    });
+    (A.comparativa || []).forEach(function (fila) {
+      var tr = crear("tr");
+      fila.forEach(function (celda, i) {
+        var td = crear(i === 0 ? "th" : "td", celda === "Sí" ? "si" : celda === "—" ? "no" : "", celda === "—" ? "—" : celda);
+        if (i === 0) td.scope = "row";
+        if (celda === "—") td.setAttribute("aria-label", "No incluido");
+        tr.appendChild(td);
+      });
+      $("tabla-abonos").appendChild(tr);
+    });
+    if (!A.comparativa || !A.comparativa.length) document.querySelector(".comparativa").hidden = true;
+    (A.adicionales || []).forEach(function (t) { $("abonos-adicionales").appendChild(crear("li", "", t)); });
+    (A.condiciones || []).forEach(function (t) { $("abonos-condiciones").appendChild(crear("li", "", t)); });
+  })();
+
   // Sistema de gestión para comercios
   (function () {
     var G = S.sistemaGestion;
@@ -728,7 +771,7 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll(
-    ".seccion .insignia, .seccion h2, .encabezado > p:last-child, .contacto-titulo > p:last-child, .servicio, .motivos li, .asistente, .seguimiento-caja, .cobertura-mapa, .cobertura-info, .formulario, .contacto-tarjeta, .numeros > div, .carrusel-zona, .preguntas details, .gestion-texto, .gestion-ilustracion, .gestion-funcion, .gestion-paso, .gestion-rubros"
+    ".seccion .insignia, .seccion h2, .encabezado > p:last-child, .contacto-titulo > p:last-child, .servicio, .motivos li, .asistente, .seguimiento-caja, .cobertura-mapa, .cobertura-info, .formulario, .contacto-tarjeta, .numeros > div, .carrusel-zona, .preguntas details, .gestion-texto, .gestion-ilustracion, .gestion-funcion, .gestion-paso, .gestion-rubros, .plan, .abonos-extra > div"
   ).forEach(function (el) {
     var hermanos = Array.prototype.indexOf.call(el.parentNode.children, el);
     el.classList.add("revelar");

@@ -119,7 +119,7 @@ window.SITIO = {
       id: "empresas", titulo: "Empresas y comercios",
       resumen: "Un técnico de confianza para que tu negocio no se frene por un problema de sistemas.",
       items: [
-        { nombre: "Mantenimiento mensual", precio: "" },
+        { nombre: "Abonos mensuales de mantenimiento", precio: "" },
         { nombre: "Puesta en marcha de puestos de trabajo", precio: "" },
         { nombre: "Servidores y respaldos", precio: "" },
         { nombre: "Visita técnica programada", precio: "" }
@@ -136,6 +136,33 @@ window.SITIO = {
       ]
     }
   ],
+
+  // Abonos de mantenimiento para comercios y empresas. Para ocultar los precios, dejá precio: "".
+  abonos: {
+    planes: [
+      { nombre: "Plan Básico", precio: "$90.000", etiqueta: "Para pequeños comercios", destacado: false,
+        items: ["Hasta 3 computadoras", "1 visita técnica presencial por mes", "Asistencia técnica remota", "Mantenimiento preventivo", "Soporte básico de impresoras", "Diagnóstico de problemas informáticos", "Asesoramiento técnico"] },
+      { nombre: "Plan Profesional", precio: "$185.000", etiqueta: "Recomendado", destacado: true,
+        items: ["Hasta 5 computadoras", "2 visitas técnicas presenciales por mes", "Asistencia remota prioritaria", "Mantenimiento preventivo y correctivo", "Soporte de impresoras y comanderas", "Soporte de sistemas de gestión y facturación", "Configuración de redes y Wi-Fi", "Asistencia con contadoras de billetes", "Revisión de copias de seguridad"] },
+      { nombre: "Plan Empresarial", precio: "$295.000", etiqueta: "Cobertura integral", destacado: false,
+        items: ["Hasta 10 computadoras", "4 visitas técnicas presenciales por mes", "Soporte remoto prioritario", "Mantenimiento integral de equipos", "Soporte de impresoras y comanderas", "Asistencia con contadoras de billetes", "Soporte de sistemas de gestión y facturación", "Configuración y mantenimiento de redes", "Revisión de seguridad informática", "Control de copias de seguridad", "Informe mensual de servicios realizados"] }
+    ],
+    comparativa: [
+      ["Computadoras", "3", "5", "10"],
+      ["Visitas por mes", "1", "2", "4"],
+      ["Soporte remoto", "Sí", "Sí", "Sí"],
+      ["Mantenimiento preventivo", "Sí", "Sí", "Sí"],
+      ["Impresoras", "Básico", "Completo", "Completo"],
+      ["Comanderas", "—", "Sí", "Sí"],
+      ["Contadoras de billetes", "—", "Sí", "Sí"],
+      ["Sistemas de gestión", "—", "Sí", "Sí"],
+      ["Redes y Wi-Fi", "—", "Sí", "Sí"],
+      ["Copias de seguridad", "—", "Revisión", "Control"],
+      ["Informe mensual", "—", "—", "Sí"]
+    ],
+    adicionales: ["Repuestos y componentes", "Recarga de cartuchos y tóners", "Reparaciones complejas de impresoras", "Cambio de pantallas de notebooks", "Instalación de sistemas operativos", "Licencias de Windows, Office y antivirus", "Recuperación de datos", "Reparación de contadoras de billetes", "Desarrollos y modificaciones de software", "Insumos y consumibles"],
+    condiciones: ["Contratos de 6 o 12 meses", "Pago mensual por adelantado", "5 % de descuento en contratos anuales", "Actualización de precios cada 3 meses, según acuerdo", "Visitas presenciales limitadas según el plan", "Trabajos extraordinarios sujetos a presupuesto", "Repuestos, licencias e insumos no incluidos", "Atención fuera del horario comercial con cargo adicional"]
+  },
 
   // Sección "Sistema de gestión para tu comercio". Revisá que cada punto sea cierto para el sistema que ofrecés.
   sistemaGestion: {
