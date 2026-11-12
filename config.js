@@ -72,7 +72,8 @@ window.SITIO = {
         { nombre: "Ampliación de RAM y cambio a disco SSD", precio: "" },
         { nombre: "Cambio de pantalla, teclado o batería", precio: "" },
         { nombre: "Armado de PC a medida", precio: "" },
-        { nombre: "Recuperación de datos", precio: "" }
+        { nombre: "Recuperación de datos", precio: "" },
+        { nombre: "Venta de licencias originales de Windows y Office", precio: "" }
       ]
     },
     {
